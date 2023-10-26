@@ -2,7 +2,7 @@
 @using calculator_in_blazor_project.Shared
 
 <PageTitle>Index</PageTitle>
-<textarea rows="4" value="@_result" @onchange="@((args) => Data = args.Value.ToString())" class="form-control"></textarea>
+<textarea rows="4" value="@_result" @onchange="@((args) => Data = args.Value.ToString())" class="form-control">Type here</textarea>
 <button class="wuwu" @onclick="OnClick">calculate</button>
 @code
 {
@@ -34,7 +34,7 @@
     
     private void Decide(string data)
     {
-        var newdata = data.Split("");
+        var newdata = data.Split();
         foreach (var i in newdata)
         {
             Console.WriteLine(i);
