@@ -1,0 +1,69 @@
+﻿@page "/"
+@using calculator_in_blazor_project.Shared
+
+<PageTitle>Index</PageTitle>
+<textarea rows="4" value="@_result" @onchange="@((args) => Data = args.Value.ToString())" class="form-control"></textarea>
+<button class="wuwu" @onclick="OnClick">calculate</button>
+@code
+{
+    Functions func = new Functions();    
+    
+    private string _data = "";
+    private string _result = "";
+
+    public string Data
+    {
+        get
+        {
+            return _data;
+        } 
+        set
+        {
+            if (value != null)
+            {
+                _data = value;
+            }
+            
+        }
+    }
+
+    private void OnClick()
+    {
+        Decide(Data);
+    }
+    
+    private void Decide(string data)
+    {
+        var newdata = data.Split("");
+        foreach (var i in newdata)
+        {
+            Console.WriteLine(i);
+        }
+        switch (newdata[1])
+        {
+            case "+":
+            {
+               _result = func.Add(Convert.ToInt16(newdata[0]), Convert.ToInt16(newdata[2])).ToString();
+                break;
+            }
+            case "-":
+            {
+                _result = func.Deduct(Convert.ToInt16(newdata[0]), Convert.ToInt16(newdata[2])).ToString();
+                break;
+    
+            };
+            case "*":
+            {
+                _result = func.Multiply(Convert.ToInt16(newdata[0]), Convert.ToInt16(newdata[2])).ToString();
+                break;
+            }
+            case "/":
+            {
+                _result = func.Divide(Convert.ToInt16(newdata[0]), Convert.ToInt16(newdata[2])).ToString();
+                break;
+            }
+        }
+    }
+}
+
+
